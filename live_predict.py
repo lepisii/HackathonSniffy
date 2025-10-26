@@ -51,7 +51,7 @@ class Config:
 
 
 # ============================================================================
-# 1. RateLimiter, MODEL AND PREDICTOR CLASS DEFINITIONS (Largely Unchanged)
+# 1. RateLimiter, MODEL AND PREDICTOR CLASS DEFINITIONS
 # ============================================================================
 
 class RateLimiter:
@@ -151,7 +151,7 @@ class TransactionPredictor:
         return data
 
     def predict_batch(self, user_sequences):
-        # <--- CHANGE 2: This method now processes a batch of sequences
+        # processes a batch of sequences
         if not user_sequences:
             return pd.DataFrame()
 
@@ -295,7 +295,7 @@ def validate_transaction(transaction):
 
 
 def batch_collector():
-    # <--- CHANGE 4: This thread creates batches of transactions
+    # This thread creates batches of transactions
     """Pulls transactions from the raw queue and pushes them as batches."""
     print("Batch collector started.")
     batch = []
@@ -326,7 +326,7 @@ def batch_collector():
 
 
 def prediction_worker():
-    # <--- CHANGE 5: Worker now processes an entire batch at once
+    # worker processes an entire batch at once
     """Pulls a batch of transactions, gets predictions, and flags them."""
     print("Prediction worker started.")
     while not shutdown_event.is_set() or not batch_queue.empty():
